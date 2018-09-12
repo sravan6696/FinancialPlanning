@@ -1,0 +1,66 @@
+<div class="container model-1">
+  <h1>Model 1</h1>
+  <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="expense">Present Expenses</label>
+      <input type="number" class="form-control" id="expense" [(ngModel)]="model.expense" name="expense" required>
+    </div>
+
+    <div class="form-group">
+      <label for="retirement">Retirement Age</label>
+      <input type="number" class="form-control" id="retirement" [(ngModel)]="model.retirement" (ngModelChange)="calculate()" name="retirement" required>
+    </div>
+
+    <div class="form-group">
+      <label for="currAge">Present Age</label>
+      <input type="number" class="form-control" id="currAge" [(ngModel)]="model.currAge" (ngModelChange)="calculate()" name="currAge" required>
+    </div>
+
+    <div class="form-group">
+      <label for="alteinvestmentrEgo">Investment Period</label>
+      <input type="number" class="form-control" id="investment" [(ngModel)]="model.investment" name="investment" disabled>
+    </div>
+
+    <div class="form-group">
+      <label for="interest">Rate of Interest %</label>
+      <input type="number" class="form-control" id="interest" [(ngModel)]="model.interest" name="interest" required>
+    </div>
+
+    <div class="form-group">
+      <label for="inflation">Inflation Rate %</label>
+      <input type="number" class="form-control" id="inflation" [(ngModel)]="model.inflation" name="inflation">
+    </div>
+
+    <div class="form-group">
+      <label for="interestRet">Rate of Interest after retirement %</label>
+      <input type="number" class="form-control" id="interestRet" [(ngModel)]="model.interestRet" name="interestRet" required>
+    </div>
+
+    <div class="form-group">
+      <label for="expectancy">Life Expectancy</label>
+      <input type="number" class="form-control" id="expectancy" [(ngModel)]="model.expectancy" (ngModelChange)="calculate()" name="expectancy" required>
+    </div>
+
+    <div class="form-group">
+      <label for="annuity">Annuity</label>
+      <input type="number" class="form-control" id="annuity" [(ngModel)]="model.annuity" name="annuity" disabled>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+
+  </form>
+
+  <table *ngIf="this.evaluated">
+    <thead>
+      <th>Money required at the beg of Retirement period(monthly)</th>
+      <th>Corpus Required</th>
+      <th>SIP Requirement</th>
+    </thead>
+    <tbody>
+      <td>{{this.begRetMoney}}</td>
+      <td>{{this.corpus}}</td>
+      <td>{{this.sipReq}}</td>
+    </tbody>
+  </table>
+
+</div>
